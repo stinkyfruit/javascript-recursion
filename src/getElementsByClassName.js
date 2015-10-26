@@ -2,22 +2,26 @@
 // var getElementsByClassName = function (className) {
 //   return document.getElementsByClassName(className);
 // };
-
+//
+//You should use document.body, element.childNodes, and element.classList
+//element.childNodes includes an array of objects
+//element.classList is an array of classes
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className, node) {
-    var matches = [];
+var getElementsByClassName = function(className) {
 
-    node = node || document.body;
+  var matches = [];
+  checkElementClass(document.body);
 
-    var nodeClasses = node.className.split(" ");
+  function checkElementClass(element) {
 
-    nodeClasses.indexOf(className) >= 0 ? matches.push(node) : null;
-
-    if (node.children) {
-        for (var i = 0; i < node.children.length; i++) {
-            matches = matches.concat(getElementsByClassName(className, node.children[i]));
-        }
+    if (element.classList && element.classList.contains(className)) {
+      matches.push(element);
     }
+    for (var i = 0; i < element.childNodes.length; i++) {
+      checkElementClass(element.childNodes[i]);
+    }
+  }
 
-    return matches;
+  return matches;
+
 };

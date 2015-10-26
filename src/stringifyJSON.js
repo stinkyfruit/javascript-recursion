@@ -39,9 +39,9 @@ var stringifyJSON = function(obj) {
 
                 } else {
                     if (i === keys.length - 1) {
-                        JSONstring += stringifyJSON(key) + ':' + stringifyJSON(obj[key]); // recursion
+                        JSONstring += stringifyJSON(key) + ':' + stringifyJSON(obj[key]); 
                     } else {
-                        JSONstring += stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ','; // recursion
+                        JSONstring += stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ','; 
                     }
                 }
             }
